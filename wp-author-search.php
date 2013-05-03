@@ -28,7 +28,9 @@ class WP_Author_Search {
 			$user = new WP_User_Query(
 				array(
 					'search' => $search_term,
-					'number' => 1
+					'number' => 1,
+					'orderby' => 'post_count',
+					'order' => 'desc'
 				)
 			);
 			remove_action( 'pre_user_query', array( $this, 'modify_user_query' ) );
