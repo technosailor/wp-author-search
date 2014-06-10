@@ -4,7 +4,7 @@ Plugin Name: Author Search
 Author: Aaron Brazell
 Author URI: http://technosailor.com
 Description: A simple plugin to return an author archive if a search term is an authors user_login, or display_name. Case insensitive.
-Version: 0.1
+Version: 0.2
 */
 
 class WP_Author_Search {
@@ -30,7 +30,7 @@ class WP_Author_Search {
 					'search' => $search_term,
 					'number' => 1,
 					'orderby' => 'post_count',
-					'order' => 'desc'
+					'order' => 'desc',
 				)
 			);
 			remove_action( 'pre_user_query', array( $this, 'modify_user_query' ) );
@@ -40,6 +40,9 @@ class WP_Author_Search {
 
 			foreach( $users as $user ) {
 				$user_id = $user->ID;
+				if( !user_can( $user_id, 'publish_posts' ) || user_can( $user_id, 'moderate_comments' ) )
+					return $query;
+
 				$permalink = get_author_posts_url( $user_id );
 				wp_redirect( $permalink );
 				exit;

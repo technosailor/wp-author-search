@@ -1,0 +1,17 @@
+{
+  "name": "technosailor/wp-author-search",
+  "description":"A simple plugin to return an author archive if a search term is an authors user_login, or display_name. Case insensitive.",
+  "keywords":["search"],
+  "authors":[
+	{
+	  "name":"Aaron Brazell",
+	  "email":"aaron@technosailor.com",
+	  "homepage":"http://technosailor.com"
+	}
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "composer/installers": "v1.0.6",
+    "php": ">=5.3.2"
+  }
+}
